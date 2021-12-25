@@ -6,4 +6,8 @@ export class Point {
 
     public x: number;
     public y: number;
+
+    public ToString(): string {
+        return  `(${this.x}, ${this.y})`;
+    }
 }
