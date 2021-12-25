@@ -1,1 +1,1 @@
-https://www.desmos.com/api/v1.6/docs/index.html
+https://wiki.geogebra.org/en/Reference:GeoGebra_Apps_Embedding
