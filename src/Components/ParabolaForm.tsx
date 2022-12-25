@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { Parabola } from "../Math/Parabola";
 import { Button } from "../StyledComponents/Button";
 import { Fieldset } from "../StyledComponents/FieldSet";
@@ -6,7 +6,10 @@ import { Input } from "../StyledComponents/Input";
 import { Label } from "../StyledComponents/Label";
 import { Switch, Thumb } from "../StyledComponents/Switch";
 
-export function ParabolaForm() {
+interface ParabolaFormProps {
+    expressionsSetter: Dispatch<React.SetStateAction<string>>
+}
+export function ParabolaForm({expressionsSetter}: ParabolaFormProps) {
     const [h, setH] = useState(1);
     const [k, setK] = useState(1);
     const [p, setP] = useState(1);
@@ -28,6 +31,7 @@ export function ParabolaForm() {
         setDirectrix(parabola.Directrix()[1].Expr);
         setPrincipalAxis(parabola.PrincipalAxis().Expr);
         setLatusRecta(`${parabola.EndpointsOfLatusRecta()[0].ToString()}, ${parabola.EndpointsOfLatusRecta()[1].ToString()}`);
+        expressionsSetter(parabola.ToExpression().Expr)
     };
 
     return (

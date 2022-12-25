@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { Fieldset } from "../StyledComponents/FieldSet";
 import { Input } from "../StyledComponents/Input";
 import { Label } from "../StyledComponents/Label";
@@ -6,7 +6,10 @@ import { Button } from "../StyledComponents/Button";
 import { Ellipse } from "../Math/Ellipse";
 import { Switch, Thumb } from "../StyledComponents/Switch";
 
-export function EllipseForm() {
+interface EllipseFormProps {
+    expressionsSetter: Dispatch<React.SetStateAction<string>>
+}
+export function EllipseForm({expressionsSetter}: EllipseFormProps): JSX.Element {
     const [h, setH] = useState(1);
     const [k, setK] = useState(1);
     const [a, setA] = useState(2);
@@ -40,6 +43,9 @@ export function EllipseForm() {
         setFoci(`${ellipse.Foci()[0].ToString()}, ${ellipse.Foci()[1].ToString()}`);
         setEccentricity(`${String(ellipse.Eccentricity())}`);
         setDirectrices(`${axis}${String(ellipse.EquationForDirectrices()[0])}, ${axis}${String(ellipse.EquationForDirectrices()[1])}`);
+        expressionsSetter(ellipse.ToExpression().Expr);
+        console.log("THis is a test")
+
     };
 
     return (

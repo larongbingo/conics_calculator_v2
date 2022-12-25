@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, useState } from "react";
 import { Button } from "../StyledComponents/Button";
 import { Fieldset } from "../StyledComponents/FieldSet";
 import { Input } from "../StyledComponents/Input";
@@ -6,7 +6,10 @@ import { Label } from "../StyledComponents/Label";
 import { Switch, Thumb } from "../StyledComponents/Switch";
 import { Hyperbola } from "../Math/Hyperbola";
 
-export function HyperbolaForm() {
+interface HyperbolaFormProps {
+    expressionsSetter: Dispatch<React.SetStateAction<string>>
+}
+export function HyperbolaForm({expressionsSetter}: HyperbolaFormProps) {
     const [h, setH] = useState(1);
     const [k, setK] = useState(1);
     const [a, setA] = useState(2);
@@ -38,6 +41,7 @@ export function HyperbolaForm() {
         setConjugateAxis(String(hyperbola.LengthOfConjugateAxis()));
         setEccentricity(`${String(hyperbola.Eccentricity())}`);
         setDirectrices(`${axis}${String(hyperbola.EquationForDirectrices()[0])}, ${axis}${String(hyperbola.EquationForDirectrices()[1])}`);
+        expressionsSetter(hyperbola.ToExpression().Expr)
     };
 
     return (
