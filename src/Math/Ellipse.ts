@@ -100,7 +100,7 @@ export class Ellipse {
 
     public ToExpression(): Expression {
         if (this.isAxisVerticalLine) 
-            return new Expression((`((${this.y}y - ${this.k})^2)/${this.a*this.a} + ((${this.x}y - ${this.h})^2)/${this.b*this.b} = 1`).toString());
+            return new Expression((`((${this.y}y - ${this.k})^2)/${this.a*this.a} + ((${this.x}x - ${this.h})^2)/${this.b*this.b} = 1`).toString());
         return new Expression((`((${this.x}x - ${this.h})^2)/${this.a*this.a} + ((${this.y}y - ${this.k})^2)/${this.b*this.b} = 1`).toString());
     }
 }
