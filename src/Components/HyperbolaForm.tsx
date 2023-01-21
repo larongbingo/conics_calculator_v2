@@ -5,6 +5,7 @@ import { Input } from "../StyledComponents/Input";
 import { Label } from "../StyledComponents/Label";
 import { Switch, Thumb } from "../StyledComponents/Switch";
 import { Hyperbola } from "../Math/Hyperbola";
+import Latex from "react-latex-next";
 
 interface HyperbolaFormProps {
     expressionsSetter: Dispatch<React.SetStateAction<string>>
@@ -25,6 +26,7 @@ export function HyperbolaForm({expressionsSetter}: HyperbolaFormProps) {
     const [conjugateAxis, setConjugateAxis] = useState("");
     const [eccentricity, setEccentricity] = useState("");
     const [directrices, setDirectrices] = useState("");
+    const [latex, setLatex] = useState("");
 
     const compute = () => {
         let hyperbola = new Hyperbola(h,k,a,b);
@@ -42,6 +44,7 @@ export function HyperbolaForm({expressionsSetter}: HyperbolaFormProps) {
         setEccentricity(`${String(hyperbola.Eccentricity())}`);
         setDirectrices(`${axis}${String(hyperbola.EquationForDirectrices()[0])}, ${axis}${String(hyperbola.EquationForDirectrices()[1])}`);
         expressionsSetter(hyperbola.ToExpression().Expr)
+        setLatex(`$${hyperbola.ToLatexString()}$`);
     };
 
     return (
@@ -101,6 +104,7 @@ export function HyperbolaForm({expressionsSetter}: HyperbolaFormProps) {
             <Label css={{fontSize:20, fontWeight:"bold"}}>Equation for Directrices</Label>
             <Label css={{fontSize:20}}>{directrices}</Label>
             <br />
+            <Latex>{latex}</Latex>
         </>
     );
 }

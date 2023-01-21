@@ -1,4 +1,5 @@
 import React, { Dispatch, useState } from "react";
+import Latex from "react-latex-next";
 import { Fieldset } from "../StyledComponents/FieldSet";
 import { Input } from "../StyledComponents/Input";
 import { Label } from "../StyledComponents/Label";
@@ -25,7 +26,7 @@ export function EllipseForm({expressionsSetter}: EllipseFormProps): JSX.Element 
     const [foci, setFoci] = useState("");
     const [eccentricity, setEccentricity] = useState("");
     const [directrices, setDirectrices] = useState("");
-
+    const [latex, setLatex] = useState("");
 
     const compute = () => {
         console.log(h,k,a,b, axisLine);
@@ -44,6 +45,7 @@ export function EllipseForm({expressionsSetter}: EllipseFormProps): JSX.Element 
         setEccentricity(`${String(ellipse.Eccentricity())}`);
         setDirectrices(`${axis}${String(ellipse.EquationForDirectrices()[0])}, ${axis}${String(ellipse.EquationForDirectrices()[1])}`);
         expressionsSetter(ellipse.ToExpression().Expr);
+        setLatex("$" + ellipse.ToLatexString() + "$");
         console.log("THis is a test")
 
     };
@@ -105,6 +107,7 @@ export function EllipseForm({expressionsSetter}: EllipseFormProps): JSX.Element 
             <Label css={{fontSize:20, fontWeight:"bold"}}>Equation for Directrices</Label>
             <Label css={{fontSize:20}}>{directrices}</Label>
             <br />
+            <Latex>{latex}</Latex>
         </>
     );
 }

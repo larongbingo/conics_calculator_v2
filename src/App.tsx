@@ -6,6 +6,7 @@ import { ParabolaForm } from './Components/ParabolaForm';
 import { Box } from './StyledComponents/Box';
 import * as Tabs from "./StyledComponents/Tabs";
 import "./styles.css";
+import "katex/dist/katex.min.css";
 
 function App() {
     const [expressionLatex, setExpressionLatex] = useState("");

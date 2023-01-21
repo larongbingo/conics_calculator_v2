@@ -105,4 +105,10 @@ export class Hyperbola {
             return new Expression(`((${this.y}y - ${this.k})^2)/${this.a*this.a} - ((${this.x}x - ${this.h})^2)/${this.b*this.b} = 1`);
         return new Expression(`((${this.x}x - ${this.h})^2)/${this.a*this.a} - ((${this.y}y - ${this.k})^2)/${this.b*this.b} = 1`);
     }
+
+    public ToLatexString(): string {
+        if (this.isAxisVerticalLine)
+            return `\\LARGE{\\frac{(${this.y}y - ${this.k})^2}{${this.a*this.a}} - \\frac{(${this.x}x - ${this.h})^2}{${this.b*this.b}} = 1}`;
+        return `\\LARGE{\\frac{(${this.x}x - ${this.h})^2}{${this.a*this.a}} - \\frac{(${this.y}y - ${this.k})^2}{${this.b*this.b}} = 1}`;
+    }
 }

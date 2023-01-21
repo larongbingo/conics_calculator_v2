@@ -1,4 +1,5 @@
 import React, { Dispatch, useState } from "react";
+import Latex from "react-latex-next";
 import { Parabola } from "../Math/Parabola";
 import { Button } from "../StyledComponents/Button";
 import { Fieldset } from "../StyledComponents/FieldSet";
@@ -20,6 +21,7 @@ export function ParabolaForm({expressionsSetter}: ParabolaFormProps) {
     const [directrix, setDirectrix] = useState("");
     const [principalAxis, setPrincipalAxis] = useState("");
     const [latusRecta, setLatusRecta] = useState("");
+    const [latex, setLatex] = useState("");
 
 
     const compute = () => {
@@ -31,7 +33,8 @@ export function ParabolaForm({expressionsSetter}: ParabolaFormProps) {
         setDirectrix(parabola.Directrix()[1].Expr);
         setPrincipalAxis(parabola.PrincipalAxis().Expr);
         setLatusRecta(`${parabola.EndpointsOfLatusRecta()[0].ToString()}, ${parabola.EndpointsOfLatusRecta()[1].ToString()}`);
-        expressionsSetter(parabola.ToExpression().Expr)
+        expressionsSetter(parabola.ToExpression().Expr);
+        setLatex(`$${parabola.ToLatexString()}$`);
     };
 
     return (
@@ -75,6 +78,7 @@ export function ParabolaForm({expressionsSetter}: ParabolaFormProps) {
             <Label css={{fontSize:20, fontWeight:"bold"}}>Endpoints of Latus Recta</Label>
             <Label css={{fontSize:20}}>{latusRecta}</Label>
             <br />
+            <Latex>{latex}</Latex>
         </>
     );
 }

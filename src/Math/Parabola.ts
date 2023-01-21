@@ -69,4 +69,15 @@ export class Parabola {
             return new Expression(`(${yCoefficient}y ${negativeK})^2 = ${pValue}(${xCoefficient}x ${negativeH})`);
         return new Expression(`(${xCoefficient}x ${negativeH})^2 = ${pValue}(${yCoefficient}y ${negativeK})`);
     }
+
+    public ToLatexString(): string {
+        var yCoefficient: string = this.y === 1 ? "" : String(this.y);
+        var xCoefficient: string = this.x === 1 ? "" : String(this.x);
+        var pValue: string = String(4 * this.p);
+        var negativeH: string = this._StringFormat(this.h);
+        var negativeK: string = this._StringFormat(this.k);
+        if (this.isLeftOrRight)
+            return `(${yCoefficient}y ${negativeK})^2 = ${pValue}(${xCoefficient}x ${negativeH})`;
+        return `(${xCoefficient}x ${negativeH})^2 = ${pValue}(${yCoefficient} ${negativeK})`;
+    }
 }
